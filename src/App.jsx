@@ -23,6 +23,7 @@ const App = () => {
 
   let clientId = import.meta.env.VITE_CLIENT_ID;
   let redirectUri = "https://music-fy.vercel.app/";
+  let teste = "https://music-fy.vercel.app/";
 
   useEffect(() => {
     if (sessionStorage.getItem("refresh_token")) {
