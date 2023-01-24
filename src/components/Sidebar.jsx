@@ -21,9 +21,6 @@ const SideBar = () => {
 
   console.log(playlists);
 
-  // 0gkEFLzk0o3TKxEkjT4xCZ playlistID
-  // 4A08n8UXRxuuLRkeFXcxxo trackID
-
   let activeStyle =
     "flex items-center space-x-3 hover:text-white text-white font-bold";
   let inactiveStyle = "flex items-center space-x-3 hover:text-white font-bold";

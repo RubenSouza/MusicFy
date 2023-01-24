@@ -22,7 +22,7 @@ const App = () => {
   const { activeSong } = useSelector(state => state.player);
 
   let clientId = import.meta.env.VITE_CLIENT_ID;
-  let redirectUri = "http://localhost:3000/";
+  let redirectUri = "https://music-fy.vercel.app/";
 
   useEffect(() => {
     if (sessionStorage.getItem("refresh_token")) {
