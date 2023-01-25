@@ -1,6 +1,6 @@
 let clientId = import.meta.env.VITE_CLIENT_ID;
 let clientSecret = import.meta.env.VITE_CLIENT_SECRET;
-let redirectUri = "music-fy.vercel.app";
+let redirectUri = "https://music-fy.vercel.app/";
 
 export const spotifyApiToken = {
   createAccessToken: async code => {
