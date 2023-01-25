@@ -9,7 +9,7 @@ import RelatedSongs from "./RelatedSongs";
 import MusicPlayer from "./MusicPlayer";
 import Loader from "./Loader";
 import Error from "./Error";
-import SongDetailsPlay from "./songDetailsPlay";
+import SongDetailsPlay from "./SongDetailsPlay";
 import PlaylistTable from "./PlaylistTable";
 
 export {
