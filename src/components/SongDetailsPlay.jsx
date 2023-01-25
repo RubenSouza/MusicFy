@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  PlayIcon,
-  PauseIcon,
-  HeartIcon as SolidHeart,
-} from "@heroicons/react/24/solid";
+import { PlayIcon, PauseIcon, HeartIcon } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
 const SongDetailsPlay = ({
@@ -14,7 +10,7 @@ const SongDetailsPlay = ({
   activeSong,
 }) => {
   return (
-    <>
+    <div>
       <div className="p-10">
         {isPlaying && activeSong?.title === song.title ? (
           <PauseIcon
@@ -36,7 +32,7 @@ text-gray-900 hover:bg-[#1fdf64]/90"
       text-gray-900 hover:bg-[#1fdf64]/90"
         />
       </div>
-    </>
+    </div>
   );
 };
 
