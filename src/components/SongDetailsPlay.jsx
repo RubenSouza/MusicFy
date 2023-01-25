@@ -1,5 +1,5 @@
 import React from "react";
-import { PlayIcon, PauseIcon, HeartIcon } from "@heroicons/react/24/solid";
+import { PlayIcon, PauseIcon } from "@heroicons/react/24/solid";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
 const SongDetailsPlay = ({
