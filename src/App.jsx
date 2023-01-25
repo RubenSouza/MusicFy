@@ -21,7 +21,8 @@ import {
 const App = () => {
   const { activeSong } = useSelector(state => state.player);
 
-  let clientId = import.meta.env.VITE_CLIENT_ID;
+  // let clientId = import.meta.env.VITE_CLIENT_ID;
+  let clientId = process.env.VITE_CLIENT_ID;
   let redirectUri = "https://music-fy.vercel.app/";
   let teste = "https://music-fy.vercel.app/";
 
