@@ -12,12 +12,12 @@ const Track = ({ isPlaying, isActive, activeSong }) => (
     </div>
     <div className="w-[200px] sm:[100px]">
       <p className="truncate text-white font-bold text-lg">
-        {activeSong?.track?.name ? activeSong?.track?.name : "No active Song"}
+        {activeSong?.track?.name ? activeSong?.track?.name : activeSong?.name}
       </p>
       <p className="truncate text-gray-300">
         {activeSong?.track?.artists[0].name
           ? activeSong?.track?.artists[0].name
-          : "No active Song"}
+          : activeSong.artists[0].name}
       </p>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar";
 import Searchbar from "./Searchbar";
-import SongCard from "./SongCard";
+import AlbumCard from "./AlbumCard";
 import TopPlay from "./TopPlay";
 import ArtistCard from "./ArtistCard";
 import DetailsHeader from "./DetailsHeader";
@@ -11,11 +11,13 @@ import Loader from "./Loader";
 import Error from "./Error";
 import SongDetailsPlay from "./SongDetailsPlay";
 import PlaylistTable from "./PlaylistTable";
+import AlbumTable from "./AlbumTable";
+import SongBar3 from "./SongBar3 ";
 
 export {
   TopPlay,
   Sidebar,
-  SongCard,
+  AlbumCard,
   Searchbar,
   ArtistCard,
   DetailsHeader,
@@ -26,4 +28,6 @@ export {
   Error,
   SongDetailsPlay,
   PlaylistTable,
+  AlbumTable,
+  SongBar3,
 };

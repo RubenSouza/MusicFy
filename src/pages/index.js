@@ -9,6 +9,8 @@ import Login from "./Login";
 import Playlist from "./Playlist";
 // import Home from "./Home";
 import PageLoader from "./PageLoader";
+import Album from "./Album";
+import Albums from "./Albums";
 
 export {
   Discover,
@@ -22,4 +24,6 @@ export {
   Playlist,
   // Home,
   PageLoader,
+  Album,
+  Albums,
 };

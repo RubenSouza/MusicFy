@@ -5,7 +5,7 @@ const TopPlay = ({ data }) => {
 
   return (
     <div
-      className="flex flex-wrap justify-start gap-4 w-full
+      className="flex flex-wrap justify-start gap-4 
     "
     >
       {topPlays.map((artist, i) => (

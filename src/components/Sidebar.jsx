@@ -19,8 +19,6 @@ const SideBar = () => {
 
   const { data: playlists } = useGetUserPlaylistsQuery();
 
-  console.log(playlists);
-
   let activeStyle =
     "flex items-center space-x-3 hover:text-white text-white font-bold";
   let inactiveStyle = "flex items-center space-x-3 hover:text-white font-bold";

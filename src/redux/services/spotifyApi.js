@@ -38,6 +38,9 @@ export const spotifyApi = createApi({
       query: ({ playlistId }) =>
         `/me/player/play?context_uri:"spotify:playlist:${playlistId}"`,
     }),
+    getAlbum: builder.query({
+      query: ({ albumId }) => `/albums/${albumId}`,
+    }),
   }),
 });
 
@@ -49,6 +52,7 @@ export const {
   useGetNewAlbumsQuery,
   useGetPlaylistQuery,
   useGetPlayPauseQuery,
+  useGetAlbumQuery,
 } = spotifyApi;
 
 // `/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=10`

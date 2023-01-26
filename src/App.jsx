@@ -16,6 +16,8 @@ import {
   SongDetails,
   TopCharts,
   Playlist,
+  Album,
+  Albums,
 } from "./pages";
 
 const App = () => {
@@ -23,7 +25,7 @@ const App = () => {
 
   let clientId = import.meta.env.VITE_CLIENT_ID;
   let redirectUri = "https://music-fy.vercel.app/";
-  let teste = "https://music-fy.vercel.app/";
+  // let redirectUri = "http://localhost:3000/";
 
   useEffect(() => {
     if (sessionStorage.getItem("refresh_token")) {
@@ -53,7 +55,9 @@ const App = () => {
   ) {
     return (
       <div className="relative flex">
-        <Sidebar className="pb-14" />
+        <div>
+          <Sidebar className="pb-14" />
+        </div>
 
         <div className={`flex flex-1 flex-col bg-gradient-to-br bg-[#121212]`}>
           <div
@@ -73,12 +77,14 @@ const App = () => {
                 <Route path="/playlist/:id" element={<Playlist />} />
                 <Route path="/songs/:songid" element={<SongDetails />} />
                 <Route path="/search/:searchTerm" element={<Search />} />
+                <Route path="/album/:id" element={<Album />} />
+                <Route path="/albums" element={<Albums />} />
               </Routes>
             </div>
           </div>
         </div>
 
-        {activeSong?.track?.name && (
+        {(activeSong?.track?.name || activeSong?.name) && (
           <div
             className="absolute h-24 bottom-0 left-0 right-0 flex 
           animate-slideup bg-[#181818] backdrop-blur-lg z-10"
