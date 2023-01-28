@@ -12,13 +12,13 @@ const PlayPause = ({
     <div
       className={`flex flex-col justify-center items-center 
 group-hover:opacity-100 duration-700 ${
-        isPlaying && activeSong?.title === song.title
+        isPlaying && activeSong?.track?.name === song?.track?.name
           ? "opacity-100"
           : "opacity-0"
       }
 `}
     >
-      {isPlaying && activeSong?.title === song.title ? (
+      {isPlaying && activeSong?.track?.name === song?.track?.name ? (
         <PauseIcon
           className="w-14 h-14 p-3 bg-[#1fdf64]/60 rounded-full
 absolute text-gray-900 bottom-[50%] right-[35%]

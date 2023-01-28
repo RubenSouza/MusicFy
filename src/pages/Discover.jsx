@@ -1,20 +1,25 @@
 import { useSelector } from "react-redux";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 import {
   useGetUserTopItemsQuery,
   useGetUserProfileQuery,
   useGetFeaturedPlaylistsQuery,
   useGetNewAlbumsQuery,
   useGetTopTracksQuery,
+  useGetTopBrasilQuery,
 } from "../redux/services/spotifyApi";
 
-import { Error, Loader, TopPlay, AlbumCard, PlaylistCard } from "../components";
+import {
+  Error,
+  Loader,
+  TopPlay,
+  AlbumCard,
+  PlaylistCard,
+  TopTracksCard,
+} from "../components";
 import { Link } from "react-router-dom";
 
 const Discover = () => {
   const { activeSong, isPlaying } = useSelector(state => state.player);
-
-  const { data, isFetching, error } = useGetTopChartsQuery();
 
   const {
     data: topTracks,
@@ -46,20 +51,30 @@ const Discover = () => {
     error: topTracksError,
   } = useGetTopTracksQuery();
 
-  console.log(getTopTracks);
+  const {
+    data: getTopBrasil,
+    isFetching: isFetchingBrasil,
+    error: topBrasilError,
+  } = useGetTopBrasilQuery();
 
   let newAlbumsDiscover = newAlbums?.albums?.items.slice(0, 8);
+
+  let topTracksDiscover = getTopTracks?.tracks?.items?.slice(0, 8);
+  let topTracksData = getTopTracks?.tracks?.items;
+
+  let topBrasilDiscover = getTopBrasil?.tracks?.items?.slice(0, 8);
+  let topBrasilData = getTopBrasil?.tracks?.items;
 
   if (isFetchingNewAlbums || isFetchingTopItems || isFetchingUserProfile) {
     return <Loader title={"Loading"} type={"spinningBubbles"} />;
   }
-  if (error) {
+  if (newAlbumsError || topItemsError || userProfileError || topTracksError) {
     return <Error />;
   }
 
   return (
     <div
-      className="flex flex-col max-w-full h-screen mb-40
+      className="flex flex-col max-w-full h-screen mb-[30%]
     "
     >
       {/* This is the Top Artists Section */}
@@ -92,6 +107,33 @@ const Discover = () => {
         </div>
       </div>
 
+      {/* This is the Top Tracks Section */}
+
+      <div className="pt-6 px-6 max-w-[calc(100vw-20%)] min-h-[40%] truncate">
+        <div className="text-white p-3  mb-4 flex justify-between">
+          <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
+            As faixas mais tocadas no mundo
+          </h1>
+          <p className="text-sm font-bold uppercase text-gray-400 hover:underline hover:cursor-pointer">
+            <Link to="/topTracks">show All</Link>
+          </p>
+        </div>
+        <div className="flex justify-start px-2 gap-5 ">
+          {topTracksDiscover?.map((song, i) => {
+            return (
+              <TopTracksCard
+                song={song}
+                key={song.track?.id}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                i={i}
+                data={topTracksData}
+              />
+            );
+          })}
+        </div>
+      </div>
+
       {/* This is the  Featured Playlists */}
 
       <div className="pt-6 px-6 max-w-[calc(100vw-20%)] min-h-[40%] truncate">
@@ -106,6 +148,33 @@ const Discover = () => {
         <div className="flex justify-start px-2 gap-5 ">
           {featuredPlaylists?.playlists?.items?.map((song, i) => {
             return <PlaylistCard song={song} key={song.id} />;
+          })}
+        </div>
+      </div>
+
+      {/* This is the Top Brasil Tracks */}
+
+      <div className="pt-6 px-6 max-w-[calc(100vw-20%)] min-h-[40%] truncate">
+        <div className="text-white p-3  mb-4 flex justify-between">
+          <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
+            As faixas mais tocadas no Brasil
+          </h1>
+          <p className="text-sm font-bold uppercase text-gray-400 hover:underline hover:cursor-pointer">
+            <Link to="/topBrasil">show All</Link>
+          </p>
+        </div>
+        <div className="flex justify-start px-2 gap-5 ">
+          {topBrasilDiscover?.map((song, i) => {
+            return (
+              <TopTracksCard
+                song={song}
+                key={song.track?.id}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                i={i}
+                data={topBrasilData}
+              />
+            );
           })}
         </div>
       </div>

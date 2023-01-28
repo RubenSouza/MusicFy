@@ -19,6 +19,8 @@ import {
   Album,
   Albums,
   Featured,
+  TopTracks,
+  TopBrasil,
 } from "./pages";
 
 const App = () => {
@@ -81,6 +83,8 @@ const App = () => {
                 <Route path="/album/:id" element={<Album />} />
                 <Route path="/albums" element={<Albums />} />
                 <Route path="/featured" element={<Featured />} />
+                <Route path="/topTracks" element={<TopTracks />} />
+                <Route path="/topBrasil" element={<TopBrasil />} />
               </Routes>
             </div>
           </div>

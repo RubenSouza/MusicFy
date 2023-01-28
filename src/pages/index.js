@@ -12,6 +12,8 @@ import PageLoader from "./PageLoader";
 import Album from "./Album";
 import Albums from "./Albums";
 import Featured from "./Featured";
+import TopTracks from "./TopTracks";
+import TopBrasil from "./TopBrasil";
 
 export {
   Discover,
@@ -28,4 +30,6 @@ export {
   Album,
   Albums,
   Featured,
+  TopTracks,
+  TopBrasil,
 };

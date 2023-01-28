@@ -6,7 +6,6 @@ import { spotifyApi } from "./services/spotifyApi";
 
 export const store = configureStore({
   reducer: {
-    [shazamCoreApi.reducerPath]: shazamCoreApi.reducer,
     [spotifyApi.reducerPath]: spotifyApi.reducer,
     player: playerReducer,
   },
