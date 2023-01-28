@@ -18,6 +18,7 @@ import {
   Playlist,
   Album,
   Albums,
+  Featured,
 } from "./pages";
 
 const App = () => {
@@ -79,6 +80,7 @@ const App = () => {
                 <Route path="/search/:searchTerm" element={<Search />} />
                 <Route path="/album/:id" element={<Album />} />
                 <Route path="/albums" element={<Albums />} />
+                <Route path="/featured" element={<Featured />} />
               </Routes>
             </div>
           </div>

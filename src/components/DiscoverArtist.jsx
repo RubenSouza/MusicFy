@@ -5,7 +5,7 @@ const DiscoverArtist = ({ artist, i }) => {
   return (
     <Link
       to={`/artists/${artist?.id}`}
-      className=" w-[10%] sm:w-[32%] xl:w-[32%] md:h-[90px] rounded-md
+      className=" w-[10%] sm:w-[45%] xl:w-[32%] md:h-[90px] rounded-md
         overflow-hidden bg-gradient-to-br from-[#ffffff]/10 to-[#ceaf7d]/10
         flex hover:bg-gradient-to-br hover:from-[#ffffff]/10 hover:to-[#fff7eb]/10
         hover:cursor-pointer flex-shrink-0 truncate

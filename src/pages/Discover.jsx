@@ -5,9 +5,10 @@ import {
   useGetUserProfileQuery,
   useGetFeaturedPlaylistsQuery,
   useGetNewAlbumsQuery,
+  useGetTopTracksQuery,
 } from "../redux/services/spotifyApi";
 
-import { Error, Loader, TopPlay, AlbumCard } from "../components";
+import { Error, Loader, TopPlay, AlbumCard, PlaylistCard } from "../components";
 import { Link } from "react-router-dom";
 
 const Discover = () => {
@@ -29,7 +30,7 @@ const Discover = () => {
 
   const {
     data: featuredPlaylists,
-    isFetching: isFetchingRecommendations,
+    isFetching: isFetchingFeatured,
     error: recommendationsError,
   } = useGetFeaturedPlaylistsQuery();
 
@@ -39,9 +40,15 @@ const Discover = () => {
     error: newAlbumsError,
   } = useGetNewAlbumsQuery();
 
-  let newAlbumsDiscover = newAlbums?.albums?.items.slice(0, 8);
+  const {
+    data: getTopTracks,
+    isFetching: isFetchingTopTracks,
+    error: topTracksError,
+  } = useGetTopTracksQuery();
 
-  console.log(newAlbumsDiscover);
+  console.log(getTopTracks);
+
+  let newAlbumsDiscover = newAlbums?.albums?.items.slice(0, 8);
 
   if (isFetchingNewAlbums || isFetchingTopItems || isFetchingUserProfile) {
     return <Loader title={"Loading"} type={"spinningBubbles"} />;
@@ -52,7 +59,7 @@ const Discover = () => {
 
   return (
     <div
-      className="flex flex-col max-w-full  h-screen
+      className="flex flex-col max-w-full h-screen mb-40
     "
     >
       {/* This is the Top Artists Section */}
@@ -68,10 +75,10 @@ const Discover = () => {
         </div>
       </div>
 
-      {/* //This is the spotify section */}
-      <div className="pt-6 px-6 max-w-[calc(100vw-20%)] truncate">
+      {/* //This is the new Albums Section */}
+      <div className="pt-6 mt-6 px-6 max-w-[calc(100vw-20%)] lg:min-h-[40%] md:min-h-[40%] min-h-[30%] truncate">
         <div className="text-white p-3  mb-4 flex justify-between">
-          <h1 className="text-2xl font-bold">
+          <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
             Feito para {userProfile?.display_name}
           </h1>
           <p className="text-sm font-bold uppercase text-gray-400 hover:underline hover:cursor-pointer">
@@ -81,6 +88,24 @@ const Discover = () => {
         <div className="flex justify-start px-2 gap-5 ">
           {newAlbumsDiscover.map((song, i) => {
             return <AlbumCard song={song} key={song.id} />;
+          })}
+        </div>
+      </div>
+
+      {/* This is the  Featured Playlists */}
+
+      <div className="pt-6 px-6 max-w-[calc(100vw-20%)] min-h-[40%] truncate">
+        <div className="text-white p-3  mb-4 flex justify-between">
+          <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
+            Playlists Mais Tocadas
+          </h1>
+          <p className="text-sm font-bold uppercase text-gray-400 hover:underline hover:cursor-pointer">
+            <Link to="/featured">show All</Link>
+          </p>
+        </div>
+        <div className="flex justify-start px-2 gap-5 ">
+          {featuredPlaylists?.playlists?.items?.map((song, i) => {
+            return <PlaylistCard song={song} key={song.id} />;
           })}
         </div>
       </div>

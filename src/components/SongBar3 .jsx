@@ -62,7 +62,7 @@ const SongBar3 = ({
         <div className="flex flex-row space-x-5 items-center">
           <img
             className="w-10 h-10 "
-            src={AlbumData?.images[0].url
+            src={AlbumData?.images[0]?.url
               .replace("{w}", "125")
               .replace("{h}", "125")}
             alt={song?.name}
@@ -77,18 +77,18 @@ const SongBar3 = ({
                 {song?.name}
               </p>
             </Link>
-            {song?.artists.length > 1 ? (
+            {song?.artists?.length > 1 ? (
               <div className="flex capitalize">
                 {song?.artists.map((artist, i) => (
                   <p className={`text-sm text-gray-300 mt-1`} key={i}>
-                    {artist.name},
+                    {artist?.name},
                   </p>
                 ))}
               </div>
             ) : (
               <div className="flex capitalize">
                 <p className="text-sm text-gray-300 mt-1">
-                  {song?.artists[0].name}
+                  {song?.artists[0]?.name}
                 </p>
               </div>
             )}
@@ -101,7 +101,7 @@ const SongBar3 = ({
       <td>
         <p className="text-sm text-gray-300 mt-1">
           {" "}
-          {(song?.duration_ms / 60000).toFixed(2)}
+          {(song?.duration_ms / 60000)?.toFixed(2)}
         </p>
       </td>
     </tr>

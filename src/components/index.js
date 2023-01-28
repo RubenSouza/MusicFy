@@ -13,6 +13,7 @@ import SongDetailsPlay from "./SongDetailsPlay";
 import PlaylistTable from "./PlaylistTable";
 import AlbumTable from "./AlbumTable";
 import SongBar3 from "./SongBar3 ";
+import PlaylistCard from "./PlaylistCard";
 
 export {
   TopPlay,
@@ -30,4 +31,5 @@ export {
   PlaylistTable,
   AlbumTable,
   SongBar3,
+  PlaylistCard,
 };

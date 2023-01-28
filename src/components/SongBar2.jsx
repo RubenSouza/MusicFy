@@ -60,7 +60,7 @@ const SongBar2 = ({
         <div className="flex flex-row space-x-5 items-center">
           <img
             className="w-10 h-10 "
-            src={PlaylistData?.images[0].url
+            src={PlaylistData?.images[0]?.url
               .replace("{w}", "125")
               .replace("{h}", "125")}
             alt={song?.title}
@@ -74,21 +74,21 @@ const SongBar2 = ({
                     : ""
                 }`}
               >
-                {song?.track.name}
+                {song?.track?.name}
               </p>
             </Link>
-            {song?.track.artists.length > 1 ? (
+            {song?.track?.artists?.length > 1 ? (
               <div className="flex capitalize">
-                {song?.track.artists.map((artist, i) => (
+                {song?.track?.artists?.map((artist, i) => (
                   <p className={`text-sm text-gray-300 mt-1`} key={i}>
-                    {artist.name},
+                    {artist?.name},
                   </p>
                 ))}
               </div>
             ) : (
               <div className="flex capitalize">
                 <p className="text-sm text-gray-300 mt-1">
-                  {song?.track.artists[0].name}
+                  {song?.track?.artists[0].name}
                 </p>
               </div>
             )}
@@ -96,21 +96,21 @@ const SongBar2 = ({
         </div>
       </td>
       <td>
-        <Link to={`/albums/${song?.track.album.id}`}>
+        <Link to={`/albums/${song?.track?.album.id}`}>
           <p className="text-sm text-gray-300 mt-1">
-            {song?.track.album.name}{" "}
+            {song?.track?.album.name}{" "}
           </p>
         </Link>
       </td>
       <td>
         <p className="text-sm text-gray-300 mt-1">
-          {song?.added_at.slice(0, 10)}
+          {song?.added_at?.slice(0, 10)}
         </p>
       </td>
       <td>
         <p className="text-sm text-gray-300 mt-1">
           {" "}
-          {(song?.track.duration_ms / 60000).toFixed(2)}
+          {(song?.track?.duration_ms / 60000).toFixed(2)}
         </p>
       </td>
     </tr>

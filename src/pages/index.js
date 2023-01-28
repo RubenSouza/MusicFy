@@ -11,6 +11,7 @@ import Playlist from "./Playlist";
 import PageLoader from "./PageLoader";
 import Album from "./Album";
 import Albums from "./Albums";
+import Featured from "./Featured";
 
 export {
   Discover,
@@ -26,4 +27,5 @@ export {
   PageLoader,
   Album,
   Albums,
+  Featured,
 };
