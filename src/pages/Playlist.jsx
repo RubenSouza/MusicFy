@@ -49,7 +49,7 @@ const Playlist = () => {
       >
         <div>
           <img
-            src={PlaylistData?.images[0].url}
+            src={PlaylistData?.images[0]?.url}
             className="max-h-60 rounded-sm shadow-[0_-5px_22px_10px_#00000030]"
           />
         </div>
@@ -58,14 +58,14 @@ const Playlist = () => {
           <h1 className="text-5xl font-bold">{PlaylistData?.name}</h1>
           <div className="flex items-center space-x-1 pt-6">
             <img
-              src={PlaylistData?.images.background}
+              src={PlaylistData?.images?.background}
               className="h-8 rounded-full"
             />
             <p className="text-sm font-bold">
-              {PlaylistData?.owner.display_name}
+              {PlaylistData?.owner?.display_name}
             </p>
             <p className="text-base font-extrabold">-</p>
-            <p className="text-sm">{`${PlaylistData?.tracks.total} Músicas`}</p>
+            <p className="text-sm">{`${PlaylistData?.tracks?.total} Músicas`}</p>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ const Playlist = () => {
             className="w-14 h-14 p-3 bg-[#1fdf64]/90 rounded-full
 text-[#111111] hover:bg-[#1fdf64]/90"
             onClick={() => {
-              handlePlay(PlaylistData?.tracks.items[0], 0);
+              handlePlay(PlaylistData?.tracks?.items[0], 0);
             }}
           />
         ) : (

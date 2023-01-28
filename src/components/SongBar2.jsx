@@ -88,7 +88,7 @@ const SongBar2 = ({
             ) : (
               <div className="flex capitalize">
                 <p className="text-sm text-gray-300 mt-1">
-                  {song?.track?.artists[0].name}
+                  {song?.track?.artists[0]?.name}
                 </p>
               </div>
             )}
@@ -98,7 +98,7 @@ const SongBar2 = ({
       <td>
         <Link to={`/albums/${song?.track?.album.id}`}>
           <p className="text-sm text-gray-300 mt-1">
-            {song?.track?.album.name}{" "}
+            {song?.track?.album?.name}{" "}
           </p>
         </Link>
       </td>
