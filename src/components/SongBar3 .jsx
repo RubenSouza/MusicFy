@@ -68,7 +68,7 @@ const SongBar3 = ({
             alt={song?.name}
           />
           <div className="flex flex-col justify-center ">
-            <Link to={`/songs/aeohaoih`}>
+            <Link to={`/songs/${song.id}`}>
               <p
                 className={`text-md font-bold text-gray-200 ${
                   activeSong?.track?.name === song?.name ? "text-green-500" : ""

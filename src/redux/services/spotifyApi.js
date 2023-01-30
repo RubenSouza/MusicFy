@@ -25,6 +25,9 @@ export const spotifyApi = createApi({
     getUserTopItems: builder.query({
       query: () => "/me/top/artists",
     }),
+    getUserFavorites: builder.query({
+      query: () => "/me/tracks?limit=50",
+    }),
     getFeaturedPlaylists: builder.query({
       query: () => `/browse/featured-playlists`,
     }),
@@ -47,6 +50,12 @@ export const spotifyApi = createApi({
     getAlbum: builder.query({
       query: ({ albumId }) => `/albums/${albumId}`,
     }),
+    getSong: builder.query({
+      query: ({ songId }) => `/tracks/${songId}`,
+    }),
+    getArtist: builder.query({
+      query: ({ artistId }) => `/artists/${artistId}`,
+    }),
   }),
 });
 
@@ -54,6 +63,7 @@ export const {
   useGetUserPlaylistsQuery,
   useGetUserProfileQuery,
   useGetUserTopItemsQuery,
+  useGetUserFavoritesQuery,
   useGetFeaturedPlaylistsQuery,
   useGetNewAlbumsQuery,
   useGetPlaylistQuery,
@@ -61,6 +71,6 @@ export const {
   useGetAlbumQuery,
   useGetTopTracksQuery,
   useGetTopBrasilQuery,
+  useGetSongQuery,
+  useGetArtistQuery,
 } = spotifyApi;
-
-// `/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=10`

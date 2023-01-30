@@ -9,7 +9,7 @@ const PlaylistTable = ({ PlaylistData }) => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector(state => state.player);
 
-  let data = PlaylistData?.tracks.items;
+  let data = PlaylistData?.items;
 
   const handlePause = () => {
     dispatch(playPause(false));
@@ -45,18 +45,31 @@ const PlaylistTable = ({ PlaylistData }) => {
               <hr className="mt-5 border-t-[1px] p-3 w-[calc(80vw-10%)]  border-[#282828]" />
             </td>
           </tr>
-          {PlaylistData?.tracks.items.map((song, i) => (
-            <SongBar2
-              song={song}
-              i={i}
-              key={i}
-              PlaylistData={PlaylistData}
-              handlePlay={handlePlay}
-              handlePause={handlePause}
-              activeSong={activeSong}
-              isPlaying={isPlaying}
-            />
-          ))}
+          {PlaylistData?.tracks?.items
+            ? PlaylistData?.tracks.items.map((song, i) => (
+                <SongBar2
+                  song={song}
+                  i={i}
+                  key={i}
+                  PlaylistData={PlaylistData}
+                  handlePlay={handlePlay}
+                  handlePause={handlePause}
+                  activeSong={activeSong}
+                  isPlaying={isPlaying}
+                />
+              ))
+            : PlaylistData?.items.map((song, i) => (
+                <SongBar2
+                  song={song}
+                  i={i}
+                  key={i}
+                  PlaylistData={PlaylistData}
+                  handlePlay={handlePlay}
+                  handlePause={handlePause}
+                  activeSong={activeSong}
+                  isPlaying={isPlaying}
+                />
+              ))}
         </tbody>
       </table>
     </div>
@@ -64,3 +77,18 @@ const PlaylistTable = ({ PlaylistData }) => {
 };
 
 export default PlaylistTable;
+
+// {
+//   PlaylistData?.tracks.items.map((song, i) => (
+//     <SongBar2
+//       song={song}
+//       i={i}
+//       key={i}
+//       PlaylistData={PlaylistData}
+//       handlePlay={handlePlay}
+//       handlePause={handlePause}
+//       activeSong={activeSong}
+//       isPlaying={isPlaying}
+//     />
+//   ));
+// }

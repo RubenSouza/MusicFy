@@ -34,9 +34,11 @@ const TopTracksCard = ({ song, activeSong, isPlaying, i, data }) => {
         </div>
 
         <div className="flex flex-col mt-4">
-          <p className="text-white font-bold truncate text-1xl">
-            {song?.track?.name}
-          </p>
+          <Link to={`/songs/${song?.track?.id}`}>
+            <p className="text-white font-bold truncate text-1xl">
+              {song?.track?.name}
+            </p>
+          </Link>
 
           <p className="text-gray-400 text-sm capitalize mt-1">
             <Link

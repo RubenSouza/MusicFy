@@ -98,19 +98,4 @@ export const spotifyApiToken = {
 
   //   return response;
   // },
-
-  // getLyrics: async songId => {
-  //   let response = await fetch(
-  //     `https://spotify-lyric-api.herokuapp.com/?trackid=${songId}}`,
-  //     {
-  //       method: "GET",
-  //     }
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //     });
-
-  //   return response;
-  // },
 };

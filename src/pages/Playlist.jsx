@@ -57,10 +57,6 @@ const Playlist = () => {
           <p className="uppercase text-xs font-bold">Playlist</p>
           <h1 className="text-5xl font-bold">{PlaylistData?.name}</h1>
           <div className="flex items-center space-x-1 pt-6">
-            <img
-              src={PlaylistData?.images?.background}
-              className="h-8 rounded-full"
-            />
             <p className="text-sm font-bold">
               {PlaylistData?.owner?.display_name}
             </p>

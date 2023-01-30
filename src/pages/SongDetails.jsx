@@ -1,15 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Error, Loader, RelatedSongs, SongDetailsPlay } from "../components";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
-  useGetSongDetailsQuery,
-  useGetSongRelatedQuery,
-} from "../redux/services/shazamCore";
+  useGetSongQuery,
+  useGetArtistQuery,
+} from "../redux/services/spotifyApi";
 
 const SongDetails = () => {
   useEffect(() => {
+    const getLyrics = async () => {
+      let response = await fetch(
+        `https://spotify-lyric-api.herokuapp.com/?trackid=${songId}`,
+        {
+          method: "GET",
+        }
+      )
+        .then(res => res.json())
+        .then(data => {
+          setLyrics(data);
+          return data;
+        });
+      return response;
+    };
+
+    getLyrics();
+
     setTimeout(() => {
       const handleClickScroll = () => {
         const element = document.querySelector("#header");
@@ -21,21 +38,29 @@ const SongDetails = () => {
   }, []);
 
   const dispatch = useDispatch();
-  const { songid, id: artistId } = useParams();
+
+  let { id: songId } = useParams();
   const { activeSong, isPlaying } = useSelector(state => state.player);
+  const [lyrics, setLyrics] = useState();
 
   const {
-    data,
-    isFetching: isFetchinRelatedSongs,
-    error,
-  } = useGetSongRelatedQuery({ songid });
-  const { data: song, isFetching: isFetchingSongDetails } =
-    useGetSongDetailsQuery({ songid });
+    data: songDetails,
+    isFetching: isFetchingSongDetails,
+    error: songDetailsError,
+  } = useGetSongQuery({ songId });
 
-  if (isFetchingSongDetails && isFetchinRelatedSongs) {
+  let artistId = songDetails?.artists[0]?.id;
+
+  const {
+    data: artistDetails,
+    isFetching: isFetchingArtistDetails,
+    error: artistDetailsError,
+  } = useGetArtistQuery({ artistId });
+
+  if (isFetchingSongDetails) {
     return <Loader title={"Loading"} type={"spinningBubbles"} />;
   }
-  if (error) {
+  if (songDetailsError) {
     return <Error />;
   }
 
@@ -58,24 +83,42 @@ const SongDetails = () => {
       {/* Header */}
       <div
         className="flex items-end w-full h-[400px] bg-gradient-to-b 
-      from-[#0a4b1b]/60 to-[#121212]/50 px-10 space-x-6"
+      from-[#0a4b1b]/60 to-[#121212]/50 px-10 space-x-6 "
         id="header"
       >
         <div>
           <img
-            src={song?.images.coverart}
+            src={songDetails?.album?.images[0]?.url}
             className="max-h-60 rounded-sm shadow-[0_-5px_22px_10px_#00000030]"
           />
         </div>
         <div className="flex flex-col">
           <p className="uppercase text-xs font-bold">Música</p>
-          <h1 className="text-7xl font-bold">{song?.title}</h1>
+          <h1 className="text-7xl font-bold">{songDetails?.name}</h1>
           <div className="flex items-center space-x-1 pt-6">
-            <img src={song?.images.background} className="h-8 rounded-full" />
-            <p className="text-sm font-bold">{song?.subtitle}</p>
+            <img
+              src={artistDetails?.images[0]?.url}
+              className="h-8 rounded-full"
+            />
+            {songDetails?.artists?.length > 1 ? (
+              <div className="flex capitalize">
+                {songDetails?.artists.map((artist, i) => (
+                  <p className={`text-sm text-gray-300 mt-1 font-bold`} key={i}>
+                    {artist?.name},
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <div className="flex capitalize">
+                <p className="text-sm text-gray-300 mt-1 font-bold">
+                  {songDetails?.artists[0]?.name}
+                </p>
+              </div>
+            )}
+
             <p className="text-base font-extrabold">-</p>
             <p className="text-sm font-bold">
-              {song?.sections[0].metadata[2].text}
+              {songDetails?.album?.release_date}
             </p>
           </div>
         </div>
@@ -83,7 +126,7 @@ const SongDetails = () => {
       {/* Icons */}
       <div className="flex">
         <SongDetailsPlay
-          song={song}
+          song={songDetails}
           isPlaying={isPlaying}
           activeSong={activeSong}
           handlePlay={handlePlayClick}
@@ -95,29 +138,46 @@ const SongDetails = () => {
 
       <div className="pl-10 flex space-x-[35%]">
         <div>
-          {" "}
           <p className="text-2xl font-bold pb-8">Letra</p>
-          {song?.sections[1].type === "LYRICS" ? (
-            song?.sections[1].text.map((line, i) => (
+          {lyrics?.error === true ? (
+            <p>Sorry, no lyrics found!</p>
+          ) : (
+            lyrics?.lines?.map((line, i) => (
               <p className="text-gray-300 m-1" key={i}>
-                {line}
+                {line.words}
               </p>
             ))
-          ) : (
-            <p>Sorry, no lyrics found!</p>
           )}
         </div>
+
         <div className="flex h-24">
-          <img src={song?.images.background} className="h-24 rounded-full" />
+          <img
+            src={artistDetails?.images[0]?.url}
+            className="h-24 rounded-full"
+          />
           <div className="flex flex-col items-start justify-center p-2">
             <p className="text-sm font-bold uppercase">Artista</p>
-            <p className="text-md font-bold">{song?.subtitle}</p>
+            {songDetails?.artists?.length > 1 ? (
+              <div className="flex capitalize">
+                {songDetails?.artists.map((artist, i) => (
+                  <p className={`text-sm text-gray-300 mt-1 font-bold`} key={i}>
+                    {artist?.name},
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <div className="flex capitalize">
+                <p className="text-sm text-gray-300 mt-1 font-bold">
+                  {songDetails?.artists[0]?.name}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       {/* Related Songs */}
-      <div className="pl-10 pt-10 pb-10">
+      {/* <div className="pl-10 pt-10 pb-10">
         <RelatedSongs
           data={data}
           artistId={artistId}
@@ -126,7 +186,7 @@ const SongDetails = () => {
           handlePauseClick={handlePauseClick}
           handlePlayClick={handlePlayRelated}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

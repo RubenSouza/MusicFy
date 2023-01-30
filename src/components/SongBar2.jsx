@@ -60,13 +60,13 @@ const SongBar2 = ({
         <div className="flex flex-row space-x-5 items-center">
           <img
             className="w-10 h-10 "
-            src={PlaylistData?.images[0]?.url
+            src={song?.track?.album?.images[0]?.url
               .replace("{w}", "125")
               .replace("{h}", "125")}
             alt={song?.title}
           />
           <div className="flex flex-col justify-center ">
-            <Link to={`/songs/aeohaoih`}>
+            <Link to={`/songs/${song?.track?.id}`}>
               <p
                 className={`text-md font-bold text-gray-200 ${
                   activeSong?.track?.name === song?.track?.name

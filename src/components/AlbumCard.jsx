@@ -1,11 +1,8 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const AlbumCard = ({ song }) => {
-  const dispatch = useDispatch();
-
   return (
     <div>
       <div
@@ -41,14 +38,6 @@ const AlbumCard = ({ song }) => {
             </Link>
           </p>
         </div>
-        {/* 
-        <PlayPause
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          song={song}
-          handlePause={handlePauseClick}
-          handlePlay={handlePlayClick}
-        /> */}
       </div>
     </div>
   );

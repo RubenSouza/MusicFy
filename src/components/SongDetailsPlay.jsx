@@ -10,7 +10,7 @@ const SongDetailsPlay = ({
   activeSong,
 }) => {
   return (
-    <div>
+    <div className="flex">
       <div className="p-10">
         {isPlaying && activeSong?.title === song.title ? (
           <PauseIcon

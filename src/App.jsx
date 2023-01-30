@@ -78,7 +78,7 @@ const App = () => {
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/artists/:id" element={<ArtistDetails />} />
                 <Route path="/playlist/:id" element={<Playlist />} />
-                <Route path="/songs/:songid" element={<SongDetails />} />
+                <Route path="/songs/:id" element={<SongDetails />} />
                 <Route path="/search/:searchTerm" element={<Search />} />
                 <Route path="/album/:id" element={<Album />} />
                 <Route path="/albums" element={<Albums />} />
