@@ -74,12 +74,12 @@ const Discover = () => {
 
   return (
     <div
-      className="flex flex-col max-w-full h-screen mb-[30%]
+      className="flex flex-col w-full 
     "
     >
       {/* This is the Top Artists Section */}
       <div
-        className="bg-gradient-to-b from-[#3a2809]/60 to-[#121212]/50 pt-6
+        className="bg-gradient-to-b from-[#3a2809]/60 to-[#121212]/50 pt-14
       px-6 "
       >
         <div className="text-white p-3 text-3xl font-bold mb-4 ">
@@ -91,7 +91,10 @@ const Discover = () => {
       </div>
 
       {/* //This is the new Albums Section */}
-      <div className="pt-6 mt-6 px-6 max-w-[calc(100vw-20%)] lg:min-h-[40%] md:min-h-[40%] min-h-[30%] truncate">
+      <div
+        className="pt-6 mt-6 px-6 max-w-[calc(100vw-20%)] 
+      lg:min-h-[40%] md:min-h-[40%] min-h-[30%] truncate"
+      >
         <div className="text-white p-3  mb-4 flex justify-between">
           <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
             Feito para {userProfile?.display_name}

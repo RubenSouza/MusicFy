@@ -6,6 +6,7 @@ import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetSongQuery,
   useGetArtistQuery,
+  useGetTopTracksQuery,
 } from "../redux/services/spotifyApi";
 
 const SongDetails = () => {
@@ -26,15 +27,6 @@ const SongDetails = () => {
     };
 
     getLyrics();
-
-    setTimeout(() => {
-      const handleClickScroll = () => {
-        const element = document.querySelector("#header");
-
-        element.scrollIntoView({ behavior: "smooth" });
-      };
-      handleClickScroll();
-    }, 1000);
   }, []);
 
   const dispatch = useDispatch();
@@ -52,22 +44,31 @@ const SongDetails = () => {
   let artistId = songDetails?.artists[0]?.id;
 
   const {
+    data: getTopTracks,
+    isFetching: isFetchingTopTracks,
+    error: topTracksError,
+  } = useGetTopTracksQuery();
+
+  let song = songDetails;
+  let data = getTopTracks?.tracks?.items;
+
+  const {
     data: artistDetails,
     isFetching: isFetchingArtistDetails,
     error: artistDetailsError,
   } = useGetArtistQuery({ artistId });
 
-  if (isFetchingSongDetails) {
+  if (isFetchingSongDetails && isFetchingArtistDetails) {
     return <Loader title={"Loading"} type={"spinningBubbles"} />;
   }
-  if (songDetailsError) {
+  if (songDetailsError && artistDetailsError) {
     return <Error />;
   }
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
-
+  //
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data }));
     dispatch(playPause(true));
@@ -79,12 +80,11 @@ const SongDetails = () => {
   };
 
   return (
-    <div className="text-white w-full bg-red h-screen">
+    <div className="text-white w-full bg-red h-screen ">
       {/* Header */}
       <div
         className="flex items-end w-full h-[400px] bg-gradient-to-b 
       from-[#0a4b1b]/60 to-[#121212]/50 px-10 space-x-6 "
-        id="header"
       >
         <div>
           <img
@@ -136,7 +136,7 @@ const SongDetails = () => {
 
       {/* Lyrics */}
 
-      <div className="pl-10 flex space-x-[35%]">
+      <div className="pl-10 flex flex-col lg:flex-row lg:space-x-[35%]">
         <div>
           <p className="text-2xl font-bold pb-8">Letra</p>
           {lyrics?.error === true ? (

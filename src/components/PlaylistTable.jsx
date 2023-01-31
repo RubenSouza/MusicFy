@@ -9,7 +9,9 @@ const PlaylistTable = ({ PlaylistData }) => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector(state => state.player);
 
-  let data = PlaylistData?.items;
+  let data = PlaylistData?.tracks?.items
+    ? PlaylistData?.tracks?.items
+    : PlaylistData?.items;
 
   const handlePause = () => {
     dispatch(playPause(false));

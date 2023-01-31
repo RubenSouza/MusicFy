@@ -5,7 +5,7 @@ import { spotifyApiToken } from "./components/spotifyApiToken";
 
 import { Login, PageLoader } from "./pages";
 
-import { Sidebar, MusicPlayer } from "./components";
+import { Sidebar, MusicPlayer, TopButtons } from "./components";
 
 import {
   ArtistDetails,
@@ -57,18 +57,26 @@ const App = () => {
     sessionStorage.getItem("refresh_token")
   ) {
     return (
-      <div className="relative flex">
+      <div className="relative flex h-screen ">
         <div>
           <Sidebar className="pb-14" />
         </div>
 
-        <div className={`flex flex-1 flex-col bg-gradient-to-br bg-[#121212]`}>
+        <div
+          className={`flex flex-1 flex-col bg-gradient-to-br bg-[#121212] 
+          `}
+          id="main"
+        >
+          <div className="z-20 absolute w-full">
+            <TopButtons />
+          </div>
+
           <div
-            className={` ${
-              activeSong?.track?.name
+            className={`flex xl:flex-row overflow-y-scroll scrollbar-none w-full ${
+              activeSong?.track?.name || activeSong?.name
                 ? "h-[calc(100vh-120px)]"
                 : "h-[calc(100vh-20px)]"
-            } overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse w-full`}
+            }`}
           >
             <div className={`h-fit w-full pb-36`}>
               <Routes>

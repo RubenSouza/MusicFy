@@ -40,12 +40,11 @@ const Playlist = () => {
   };
 
   return (
-    <div className="h-screen text-white w-full">
+    <div className="h-screen text-white w-full scrollbar-none">
       {/* Header */}
       <div
         className="flex items-end w-full h-[400px] bg-gradient-to-b 
-      from-[#0a61a8]/60 to-[#121212]/50 px-10 space-x-6"
-        id="header"
+      from-[#0a61a8]/60 to-[#121212]/50 px-10 space-x-6 "
       >
         <div>
           <img
