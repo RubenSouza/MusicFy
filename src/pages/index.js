@@ -1,5 +1,5 @@
 import Discover from "./Discover";
-import TopArtists from "./TopArtists";
+import Library from "./Library";
 import ArtistDetails from "./ArtistDetails";
 import SongDetails from "./SongDetails";
 import Search from "./Search";
@@ -14,11 +14,12 @@ import Albums from "./Albums";
 import Featured from "./Featured";
 import TopTracks from "./TopTracks";
 import TopBrasil from "./TopBrasil";
+import LibraryPlaylists from "./LibraryPlaylists";
 
 export {
   Discover,
   Search,
-  TopArtists,
+  Library,
   ArtistDetails,
   SongDetails,
   TopCharts,
@@ -32,4 +33,5 @@ export {
   Featured,
   TopTracks,
   TopBrasil,
+  LibraryPlaylists,
 };

@@ -55,7 +55,7 @@ const SideBar = () => {
         </NavLink>
 
         <NavLink
-          to={"/top-artists"}
+          to={"/library"}
           className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
           <BuildingLibraryIcon className="w-7 h-7" />

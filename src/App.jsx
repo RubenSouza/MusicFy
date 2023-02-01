@@ -9,7 +9,7 @@ import { Sidebar, MusicPlayer, TopButtons } from "./components";
 
 import {
   ArtistDetails,
-  TopArtists,
+  Library,
   Favorites,
   Discover,
   Search,
@@ -27,8 +27,7 @@ const App = () => {
   const { activeSong } = useSelector(state => state.player);
 
   let clientId = import.meta.env.VITE_CLIENT_ID;
-  let redirectUri = "https://music-fy.vercel.app/";
-  // let redirectUri = "http://localhost:3000/";
+  let redirectUri = import.meta.env.VITE_REDIRECT_URI;
 
   useEffect(() => {
     if (sessionStorage.getItem("refresh_token")) {
@@ -67,7 +66,7 @@ const App = () => {
           `}
           id="main"
         >
-          <div className="z-20 absolute w-full">
+          <div className="z-20 absolute w-full" id="topButtons">
             <TopButtons />
           </div>
 
@@ -81,7 +80,7 @@ const App = () => {
             <div className={`h-fit w-full pb-36`}>
               <Routes>
                 <Route path="/" element={<Discover />} />
-                <Route path="/top-artists" element={<TopArtists />} />
+                <Route path="/library/*" element={<Library />} />
                 <Route path="/top-charts" element={<TopCharts />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/artists/:id" element={<ArtistDetails />} />

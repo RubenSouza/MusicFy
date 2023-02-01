@@ -79,7 +79,7 @@ const Discover = () => {
     >
       {/* This is the Top Artists Section */}
       <div
-        className="bg-gradient-to-b from-[#3a2809]/60 to-[#121212]/50 pt-14
+        className="bg-gradient-to-b from-[#3a2809]/60 to-[#121212]/50 pt-20
       px-6 "
       >
         <div className="text-white p-3 text-3xl font-bold mb-4 ">

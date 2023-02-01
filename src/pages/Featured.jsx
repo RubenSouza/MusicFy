@@ -31,7 +31,7 @@ const Featured = () => {
   }
 
   return (
-    <div className="h-screen w-full p-10">
+    <div className="h-screen w-full p-10 pt-16">
       <div className="text-white p-3  mb-4 flex justify-between">
         <h1 className="text-2xl font-bold">Playlists Mais Tocadas</h1>
       </div>
