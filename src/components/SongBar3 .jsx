@@ -9,7 +9,7 @@ const PlayRelatedSongs = ({
   handlePause,
   handlePlay,
 }) =>
-  isPlaying && activeSong?.track?.name === song?.name ? (
+  (isPlaying && activeSong?.track?.name) || activeSong?.name === song?.name ? (
     <PauseIcon className="text-gray-300 h-5" onClick={handlePause} />
   ) : (
     <PlayIcon className="text-gray-300 h-4" onClick={handlePlay} />
@@ -26,14 +26,12 @@ const SongBar3 = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  console.log(song);
-
   return (
     <tr
       key={i}
       className={`hover:bg-[#313131]/50 h-14
       ${
-        activeSong?.track?.name === song?.name
+        activeSong?.track?.name || activeSong?.name === song?.name
           ? "bg-[#313131]/50"
           : "bg-transparent"
       }`}
@@ -71,7 +69,9 @@ const SongBar3 = ({
             <Link to={`/songs/${song.id}`}>
               <p
                 className={`text-md font-bold text-gray-200 ${
-                  activeSong?.track?.name === song?.name ? "text-green-500" : ""
+                  activeSong?.track?.name || activeSong?.name === song?.name
+                    ? "text-green-500"
+                    : ""
                 }`}
               >
                 {song?.name}

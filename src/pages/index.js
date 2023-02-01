@@ -15,6 +15,8 @@ import Featured from "./Featured";
 import TopTracks from "./TopTracks";
 import TopBrasil from "./TopBrasil";
 import LibraryPlaylists from "./LibraryPlaylists";
+import LibraryPodcasts from "./LibraryPodcasts";
+import LibraryAlbums from "./LibraryAlbums";
 
 export {
   Discover,
@@ -34,4 +36,6 @@ export {
   TopTracks,
   TopBrasil,
   LibraryPlaylists,
+  LibraryPodcasts,
+  LibraryAlbums,
 };

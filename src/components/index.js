@@ -16,6 +16,7 @@ import SongBar3 from "./SongBar3 ";
 import PlaylistCard from "./PlaylistCard";
 import TopTracksCard from "./TopTracksCard";
 import TopButtons from "./TopButtons";
+import MyAlbum from "./MyAlbum";
 
 export {
   TopPlay,
@@ -36,4 +37,5 @@ export {
   PlaylistCard,
   TopTracksCard,
   TopButtons,
+  MyAlbum,
 };

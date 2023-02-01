@@ -71,7 +71,7 @@ const TopButtons = () => {
             <p className="py-3 px-4">Playlists</p>
           </NavLink>
           <NavLink
-            to="/library/podcast"
+            to="/library/podcasts"
             className={({ isActive }) =>
               isActive ? activeStyle : inactiveStyle
             }
@@ -84,7 +84,7 @@ const TopButtons = () => {
               isActive ? activeStyle : inactiveStyle
             }
           >
-            <p className="py-3 px-4">Artists</p>
+            <p className="py-3 px-5">Artists</p>
           </NavLink>
           <NavLink
             to="library/albums"
@@ -92,7 +92,7 @@ const TopButtons = () => {
               isActive ? activeStyle : inactiveStyle
             }
           >
-            <p className="py-3 px-4">Albums</p>
+            <p className="py-3 px-5">Albums</p>
           </NavLink>
         </div>
       </div>

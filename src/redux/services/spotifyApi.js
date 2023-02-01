@@ -28,6 +28,12 @@ export const spotifyApi = createApi({
     getUserFavorites: builder.query({
       query: () => "/me/tracks?limit=50",
     }),
+    getUserPodcasts: builder.query({
+      query: () => "/me/shows?limit=50",
+    }),
+    getUserAlbums: builder.query({
+      query: () => "/me/albums?limit=50",
+    }),
     getFeaturedPlaylists: builder.query({
       query: () => `/browse/featured-playlists`,
     }),
@@ -73,4 +79,6 @@ export const {
   useGetTopBrasilQuery,
   useGetSongQuery,
   useGetArtistQuery,
+  useGetUserPodcastsQuery,
+  useGetUserAlbumsQuery,
 } = spotifyApi;
