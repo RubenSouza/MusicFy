@@ -79,18 +79,3 @@ const PlaylistTable = ({ PlaylistData }) => {
 };
 
 export default PlaylistTable;
-
-// {
-//   PlaylistData?.tracks.items.map((song, i) => (
-//     <SongBar2
-//       song={song}
-//       i={i}
-//       key={i}
-//       PlaylistData={PlaylistData}
-//       handlePlay={handlePlay}
-//       handlePause={handlePause}
-//       activeSong={activeSong}
-//       isPlaying={isPlaying}
-//     />
-//   ));
-// }

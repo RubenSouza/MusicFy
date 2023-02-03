@@ -12,8 +12,8 @@ const ArtistAlbums = () => {
     error: artistAlbumsError,
   } = useGetArtistAlbumsQuery({ artistId });
   return (
-    <div className="w-full h-screen">
-      <div className="mt-10 px-10 pb-24">
+    <div className="w-full h-screen text-white">
+      <div className="pt-16 p-10 pb-24">
         <div className="relative flex justify-between w-[98%]">
           <h1 className="text-2xl font-bold pb-8">Albums</h1>
         </div>

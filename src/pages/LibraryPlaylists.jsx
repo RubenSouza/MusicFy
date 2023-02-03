@@ -6,8 +6,6 @@ import { useGetUserPlaylistsQuery } from "../redux/services/spotifyApi";
 const LibraryPlaylists = () => {
   const { data: playlists } = useGetUserPlaylistsQuery();
 
-  console.log(playlists);
-
   const { activeSong, isPlaying } = useSelector(state => state.player);
 
   return (

@@ -27,14 +27,6 @@ const PlaylistCard = ({ song }) => {
             </p>
           </Link>
         </div>
-        {/* 
-        <PlayPause
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          song={song}
-          handlePause={handlePauseClick}
-          handlePlay={handlePlayClick}
-        /> */}
       </div>
     </div>
   );
