@@ -22,6 +22,7 @@ import {
   TopTracks,
   TopBrasil,
 } from "./pages";
+import ArtistAlbums from "./pages/ArtistAlbums";
 
 const App = () => {
   const { activeSong } = useSelector(state => state.player);
@@ -84,6 +85,7 @@ const App = () => {
                 <Route path="/top-charts" element={<TopCharts />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/artists/:id" element={<ArtistDetails />} />
+                <Route path="/artists/albums/:id" element={<ArtistAlbums />} />
                 <Route path="/playlist/:id" element={<Playlist />} />
                 <Route path="/songs/:id" element={<SongDetails />} />
                 <Route path="/search/:searchTerm" element={<Search />} />

@@ -60,9 +60,7 @@ const SongBar3 = ({
         <div className="flex flex-row space-x-5 items-center">
           <img
             className="w-10 h-10 "
-            src={AlbumData?.images[0]?.url
-              .replace("{w}", "125")
-              .replace("{h}", "125")}
+            src={AlbumData?.images?.[0]?.url || song?.album?.images?.[0]?.url}
             alt={song?.name}
           />
           <div className="flex flex-col justify-center ">
@@ -96,7 +94,9 @@ const SongBar3 = ({
         </div>
       </td>
       <td>
-        <p className="text-sm text-gray-300 mt-1">{AlbumData?.name}</p>
+        <p className="text-sm text-gray-300 mt-1">
+          {AlbumData?.name || song?.album?.name}
+        </p>
       </td>
       <td>
         <p className="text-sm text-gray-300 mt-1">

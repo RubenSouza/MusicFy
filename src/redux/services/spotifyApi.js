@@ -62,6 +62,12 @@ export const spotifyApi = createApi({
     getArtist: builder.query({
       query: ({ artistId }) => `/artists/${artistId}`,
     }),
+    getArtistTopTracks: builder.query({
+      query: ({ artistId }) => `/artists/${artistId}/top-tracks?market=BR`,
+    }),
+    getArtistAlbums: builder.query({
+      query: ({ artistId }) => `/artists/${artistId}/albums `,
+    }),
   }),
 });
 
@@ -81,4 +87,6 @@ export const {
   useGetArtistQuery,
   useGetUserPodcastsQuery,
   useGetUserAlbumsQuery,
+  useGetArtistTopTracksQuery,
+  useGetArtistAlbumsQuery,
 } = spotifyApi;
