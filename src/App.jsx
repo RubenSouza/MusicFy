@@ -14,7 +14,6 @@ import {
   Discover,
   Search,
   SongDetails,
-  TopCharts,
   Playlist,
   Album,
   Albums,
@@ -82,7 +81,6 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Discover />} />
                 <Route path="/library/*" element={<Library />} />
-                <Route path="/top-charts" element={<TopCharts />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/artists/:id" element={<ArtistDetails />} />
                 <Route path="/artists/albums/:id" element={<ArtistAlbums />} />
