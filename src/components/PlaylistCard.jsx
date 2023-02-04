@@ -21,7 +21,7 @@ const PlaylistCard = ({ song }) => {
           </div>
         </Link>
         <div className="flex flex-col mt-4">
-          <Link to={`/album/${song?.id}`}>
+          <Link to={`/playlist/${song?.id}`}>
             <p className="text-white font-bold truncate text-1xl">
               {song.name}
             </p>
