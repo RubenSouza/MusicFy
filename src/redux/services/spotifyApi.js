@@ -34,6 +34,9 @@ export const spotifyApi = createApi({
     getUserAlbums: builder.query({
       query: () => "/me/albums?limit=50",
     }),
+    getUserArtists: builder.query({
+      query: () => "/me/following?type=artist",
+    }),
     getFeaturedPlaylists: builder.query({
       query: () => `/browse/featured-playlists`,
     }),
@@ -89,4 +92,5 @@ export const {
   useGetUserAlbumsQuery,
   useGetArtistTopTracksQuery,
   useGetArtistAlbumsQuery,
+  useGetUserArtistsQuery,
 } = spotifyApi;

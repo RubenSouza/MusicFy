@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { setIsLibrary } from "../redux/features/topButtons";
 import Albums from "./Albums";
 import LibraryAlbums from "./LibraryAlbums";
+import LibraryArtists from "./LibraryArtists";
 import LibraryPlaylists from "./LibraryPlaylists";
 import LibraryPodcasts from "./LibraryPodcasts";
 
@@ -25,6 +26,7 @@ const Library = () => {
         <Route path="/" element={<LibraryPlaylists />} />
         <Route path="/podcasts" element={<LibraryPodcasts />} />
         <Route path="/albums" element={<LibraryAlbums />} />
+        <Route path="/artists" element={<LibraryArtists />} />
       </Routes>
     </div>
   );

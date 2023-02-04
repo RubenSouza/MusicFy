@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import ColorThief from "colorthief";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Error, Loader, RelatedSongs, SongDetailsPlay } from "../components";
+import { Error, Loader, SongDetailsPlay } from "../components";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetSongQuery,
@@ -10,30 +11,10 @@ import {
 } from "../redux/services/spotifyApi";
 
 const SongDetails = () => {
-  useEffect(() => {
-    const getLyrics = async () => {
-      let response = await fetch(
-        `https://spotify-lyric-api.herokuapp.com/?trackid=${songId}`,
-        {
-          method: "GET",
-        }
-      )
-        .then(res => res.json())
-        .then(data => {
-          setLyrics(data);
-          return data;
-        });
-      return response;
-    };
-
-    getLyrics();
-  }, []);
-
-  const dispatch = useDispatch();
-
   let { id: songId } = useParams();
-  const { activeSong, isPlaying } = useSelector(state => state.player);
+  const [color, setColor] = useState();
   const [lyrics, setLyrics] = useState();
+  const { activeSong, isPlaying } = useSelector(state => state.player);
 
   const {
     data: songDetails,
@@ -58,6 +39,49 @@ const SongDetails = () => {
     error: artistDetailsError,
   } = useGetArtistQuery({ artistId });
 
+  const dispatch = useDispatch();
+
+  const colorThief = new ColorThief();
+  const img = new Image();
+  img.crossOrigin = "Anonymous";
+  img.src = songDetails?.album?.images[0]?.url;
+
+  useEffect(() => {
+    const getLyrics = async () => {
+      let response = await fetch(
+        `https://spotify-lyric-api.herokuapp.com/?trackid=${songId}`,
+        {
+          method: "GET",
+        }
+      )
+        .then(res => res.json())
+        .then(data => {
+          setLyrics(data);
+          return data;
+        });
+      return response;
+    };
+
+    getLyrics();
+
+    img.onload = () => {
+      const color = colorThief.getColor(img);
+
+      const rgbToHex = (r, g, b) =>
+        "#" +
+        [r, g, b]
+          .map(x => {
+            const hex = x.toString(16);
+            return hex.length === 1 ? "0" + hex : hex;
+          })
+          .join("");
+
+      setColor(rgbToHex(color[0], color[1], color[2]));
+    };
+  }, [img.src]);
+
+  //Errors
+
   if (isFetchingSongDetails && isFetchingArtistDetails) {
     return <Loader title={"Loading"} type={"spinningBubbles"} />;
   }
@@ -74,55 +98,60 @@ const SongDetails = () => {
     dispatch(playPause(true));
   };
 
-  const handlePlayRelated = (song, i) => {
-    dispatch(setActiveSong({ song, data, i }));
-    dispatch(playPause(true));
-  };
-
   return (
     <div className="text-white w-full bg-red h-screen ">
       {/* Header */}
-      <div
-        className="flex items-end w-full h-[400px] bg-gradient-to-b 
-      from-[#0a4b1b]/60 to-[#121212]/50 px-10 space-x-6 "
-      >
-        <div>
-          <img
-            src={songDetails?.album?.images[0]?.url}
-            className="max-h-60 rounded-sm shadow-[0_-5px_22px_10px_#00000030]"
-          />
-        </div>
-        <div className="flex flex-col">
-          <p className="uppercase text-xs font-bold">Música</p>
-          <h1 className="text-7xl font-bold">{songDetails?.name}</h1>
-          <div className="flex items-center space-x-1 pt-6">
+      {songDetails && (
+        <div
+          className="flex items-end w-full h-[400px] px-10 space-x-6 "
+          style={{
+            backgroundImage: `linear-gradient(180deg, ${color} 0%, rgba(0, 0, 0, 0) 100%)`,
+            backgroundPosition: "25% -15%",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div>
             <img
-              src={artistDetails?.images[0]?.url}
-              className="h-8 rounded-full"
+              src={songDetails?.album?.images[0]?.url}
+              className="max-h-60 rounded-sm shadow-[0_-5px_22px_10px_#00000030]"
             />
-            {songDetails?.artists?.length > 1 ? (
-              <div className="flex capitalize">
-                {songDetails?.artists.map((artist, i) => (
-                  <p className={`text-sm text-gray-300 mt-1 font-bold`} key={i}>
-                    {artist?.name},
+          </div>
+          <div className="flex flex-col">
+            <p className="uppercase text-xs font-bold">Música</p>
+            <h1 className="text-7xl font-bold">{songDetails?.name}</h1>
+            <div className="flex items-center space-x-1 pt-6">
+              <img
+                src={artistDetails?.images[0]?.url}
+                className="h-8 rounded-full"
+              />
+              {songDetails?.artists?.length > 1 ? (
+                <div className="flex capitalize">
+                  {songDetails?.artists.map((artist, i) => (
+                    <p
+                      className={`text-sm text-gray-300 mt-1 font-bold`}
+                      key={i}
+                    >
+                      {artist?.name},
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex capitalize">
+                  <p className="text-sm text-gray-300 mt-1 font-bold">
+                    {songDetails?.artists[0]?.name}
                   </p>
-                ))}
-              </div>
-            ) : (
-              <div className="flex capitalize">
-                <p className="text-sm text-gray-300 mt-1 font-bold">
-                  {songDetails?.artists[0]?.name}
-                </p>
-              </div>
-            )}
+                </div>
+              )}
 
-            <p className="text-base font-extrabold">-</p>
-            <p className="text-sm font-bold">
-              {songDetails?.album?.release_date}
-            </p>
+              <p className="text-base font-extrabold">-</p>
+              <p className="text-sm font-bold">
+                {songDetails?.album?.release_date}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       {/* Icons */}
       <div className="flex">
         <SongDetailsPlay
@@ -175,18 +204,6 @@ const SongDetails = () => {
           </div>
         </div>
       </div>
-
-      {/* Related Songs */}
-      {/* <div className="pl-10 pt-10 pb-10">
-        <RelatedSongs
-          data={data}
-          artistId={artistId}
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          handlePauseClick={handlePauseClick}
-          handlePlayClick={handlePlayRelated}
-        />
-      </div> */}
     </div>
   );
 };

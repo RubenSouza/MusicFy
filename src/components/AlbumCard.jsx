@@ -37,6 +37,9 @@ const AlbumCard = ({ song }) => {
               {song?.artists?.[0]?.name}
             </Link>
           </p>
+          <p className="text-gray-400 text-sm capitalize mt-1 truncate">
+            {song?.publisher}
+          </p>
         </div>
       </div>
     </div>

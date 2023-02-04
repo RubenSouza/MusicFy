@@ -43,7 +43,7 @@ const App = () => {
   const handleLogin = () => {
     console.log("Logged in");
     sessionStorage.setItem("isLogged", true);
-    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=user-read-private%20user-read-email%20user-read-playback-state%20user-modify-playback-state%20user-read-currently-playing%20user-top-read%20user-read-recently-played%20user-library-read%20user-library-modify%20playlist-read-private%20playlist-modify-public%20playlist-modify-private%20playlist-read-collaborative%20streaming%20app-remote-control&redirect_uri=${redirectUri}`;
+    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=user-read-private%20user-read-email%20user-read-playback-state%20user-modify-playback-state%20user-read-currently-playing%20user-top-read%20user-read-recently-played%20user-library-read%20user-library-modify%20playlist-read-private%20playlist-modify-public%20playlist-modify-private%20playlist-read-collaborative%20streaming%20app-remote-control%20user-follow-read&redirect_uri=${redirectUri}`;
   };
 
   if (

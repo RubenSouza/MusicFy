@@ -100,7 +100,9 @@ const ArtistDetails = () => {
           </div>
           <div className="flex flex-col items-start -space-y-6">
             <h1 className="text-md font-bold">Artist</h1>
-            <h1 className="text-[100px] font-bold">{artistDetails?.name}</h1>
+            <h1 className="text-[4.5vw] font-bold flex-wrap">
+              {artistDetails?.name}
+            </h1>
             <p className="text-base">{`${(artistDetails?.followers?.total).toLocaleString(
               "pt-BR"
             )} Seguidores`}</p>

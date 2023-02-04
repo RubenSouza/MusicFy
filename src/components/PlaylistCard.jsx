@@ -26,6 +26,9 @@ const PlaylistCard = ({ song }) => {
               {song.name}
             </p>
           </Link>
+          <p className="text-gray-400 text-sm capitalize mt-3 truncate">
+            {song.description}
+          </p>
         </div>
       </div>
     </div>
