@@ -69,7 +69,17 @@ export const spotifyApi = createApi({
       query: ({ artistId }) => `/artists/${artistId}/top-tracks?market=BR`,
     }),
     getArtistAlbums: builder.query({
-      query: ({ artistId }) => `/artists/${artistId}/albums `,
+      query: ({ artistId }) => `/artists/${artistId}/albums`,
+    }),
+    getSeveralCategories: builder.query({
+      query: () => `/browse/categories?country=BR&limit=50`,
+    }),
+    getSearch: builder.query({
+      query: ({ queryItem }) =>
+        `/search?include_external=audio&q=${queryItem}&type=album,artist,playlist,track,show,episode`,
+    }),
+    getPlaylistsForCategory: builder.query({
+      query: () => `/browse/categories/toplists/playlists`,
     }),
   }),
 });
@@ -93,4 +103,7 @@ export const {
   useGetArtistTopTracksQuery,
   useGetArtistAlbumsQuery,
   useGetUserArtistsQuery,
+  useGetSeveralCategoriesQuery,
+  useGetSearchQuery,
+  useGetPlaylistsForCategoryQuery,
 } = spotifyApi;

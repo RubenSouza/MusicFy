@@ -12,7 +12,7 @@ const SongDetailsPlay = ({
   return (
     <div className="flex">
       <div className="p-10">
-        {isPlaying && activeSong?.title === song.title ? (
+        {isPlaying && activeSong?.title === song?.title ? (
           <PauseIcon
             className="w-16 h-16 p-3 bg-[#1fdf64]/60 rounded-full
 text-gray-900 hover:bg-[#1fdf64]/90"

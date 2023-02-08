@@ -17,6 +17,7 @@ import PlaylistCard from "./PlaylistCard";
 import TopTracksCard from "./TopTracksCard";
 import TopButtons from "./TopButtons";
 import MyAlbum from "./MyAlbum";
+import GenderCard from "./GenderCard";
 
 export {
   TopPlay,
@@ -38,4 +39,5 @@ export {
   TopTracksCard,
   TopButtons,
   MyAlbum,
+  GenderCard,
 };

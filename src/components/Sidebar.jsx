@@ -47,7 +47,7 @@ const SideBar = () => {
         </NavLink>
 
         <NavLink
-          to={"/search/:searchTerm"}
+          to={"/search"}
           className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
           <MagnifyingGlassIcon className="w-7 h-7" />

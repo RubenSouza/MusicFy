@@ -22,7 +22,7 @@ const SongDetails = () => {
     error: songDetailsError,
   } = useGetSongQuery({ songId });
 
-  let artistId = songDetails?.artists[0]?.id;
+  let artistId = songDetails?.artists?.[0]?.id;
 
   const {
     data: getTopTracks,
@@ -44,7 +44,7 @@ const SongDetails = () => {
   const colorThief = new ColorThief();
   const img = new Image();
   img.crossOrigin = "Anonymous";
-  img.src = songDetails?.album?.images[0]?.url;
+  img.src = songDetails?.album?.images?.[0]?.url;
 
   useEffect(() => {
     const getLyrics = async () => {
@@ -173,7 +173,7 @@ const SongDetails = () => {
           ) : (
             lyrics?.lines?.map((line, i) => (
               <p className="text-gray-300 m-1" key={i}>
-                {line.words}
+                {line?.words}
               </p>
             ))
           )}
@@ -181,14 +181,14 @@ const SongDetails = () => {
 
         <div className="flex h-24">
           <img
-            src={artistDetails?.images[0]?.url}
+            src={artistDetails?.images?.[0]?.url}
             className="h-24 rounded-full"
           />
           <div className="flex flex-col items-start justify-center p-2">
             <p className="text-sm font-bold uppercase">Artista</p>
             {songDetails?.artists?.length > 1 ? (
               <div className="flex capitalize">
-                {songDetails?.artists.map((artist, i) => (
+                {songDetails?.artists?.map((artist, i) => (
                   <p className={`text-sm text-gray-300 mt-1 font-bold`} key={i}>
                     {artist?.name},
                   </p>
@@ -197,7 +197,7 @@ const SongDetails = () => {
             ) : (
               <div className="flex capitalize">
                 <p className="text-sm text-gray-300 mt-1 font-bold">
-                  {songDetails?.artists[0]?.name}
+                  {songDetails?.artists?.[0]?.name}
                 </p>
               </div>
             )}

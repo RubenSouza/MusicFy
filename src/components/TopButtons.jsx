@@ -10,17 +10,21 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import Searchbar from "./Searchbar";
 
 const TopButtons = () => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
 
   let state = useSelector(state => state.topButtons.isLibrary);
+  let searchState = useSelector(state => state.topButtons.isSearch);
 
   const [isLibrary, setIsLibrary] = useState(state);
+  const [isSearch, setIsSearch] = useState(searchState);
 
   useEffect(() => {
     setIsLibrary(state);
-  }, [state]);
+    setIsSearch(searchState);
+  }, [state, searchState]);
 
   const {
     data: userProfile,
@@ -45,6 +49,7 @@ const TopButtons = () => {
       2xl:max-w-[calc(100vw-20%)] px-6 py-3`}
     >
       <div className="flex items-center space-x-8">
+        {/* Go and Back Buttons */}
         <div className="flex items-center space-x-4">
           <ChevronLeftIcon
             className="w-8 h-8 rounded-full bg-[#121212] p-1
@@ -57,6 +62,7 @@ const TopButtons = () => {
             onClick={() => window.history.go(1)}
           />
         </div>
+        {/* Library Buttons */}
         <div
           className={`flex items-center space-x-4 text-white font-bold text-sm
         ${isLibrary ? "" : "hidden"}`}
@@ -94,6 +100,10 @@ const TopButtons = () => {
           >
             <p className="py-3 px-5">Albums</p>
           </NavLink>
+        </div>
+        {/* Search Buttons */}
+        <div className={isSearch ? "" : "hidden"}>
+          <Searchbar />
         </div>
       </div>
       <div className="flex items-center flex-col space-y-1">

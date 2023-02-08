@@ -16,6 +16,7 @@ import LibraryPlaylists from "./LibraryPlaylists";
 import LibraryPodcasts from "./LibraryPodcasts";
 import LibraryAlbums from "./LibraryAlbums";
 import LibraryArtists from "./LibraryArtists";
+import SearchQuery from "./SearchQuery";
 
 export {
   Discover,
@@ -36,4 +37,5 @@ export {
   LibraryPodcasts,
   LibraryAlbums,
   LibraryArtists,
+  SearchQuery,
 };
