@@ -20,7 +20,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
       <div
         className="flex flex-col w-[200px] h-[285px] p-4 bg-white/5
     backdrop-blur-sm animate-slideup rounded-lg cursor-pointer
-    hover:bg-white/10 hover:duration-700 group group-hover:
+    hover:bg-white/10 hover:duration-700 group group-hover
     "
       >
         <div className="relative rounded-lg overflow-hidden">
