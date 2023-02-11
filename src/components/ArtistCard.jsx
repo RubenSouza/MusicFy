@@ -15,7 +15,7 @@ const ArtistCard = ({ song, i }) => {
             <img
               src={song?.images?.[0]?.url}
               alt="songs"
-              className="w-full h-full rounded-full"
+              className="w-full h-[170px] object-cover rounded-full relative"
             />
           </div>
         </Link>

@@ -4,7 +4,7 @@ import { setIsSearch } from "../redux/features/topButtons";
 import { Link, useParams } from "react-router-dom";
 import { useGetSearchQuery } from "../redux/services/spotifyApi";
 
-import { SongBar4 } from "../components";
+import { AlbumCard, ArtistCard, PlaylistCard, SongBar4 } from "../components";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const SearchQuery = () => {
@@ -43,8 +43,8 @@ const SearchQuery = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full text-white pt-20 pl-10">
-      <div className="flex flex-row w-full">
+    <div className="h-screen  text-white pt-20 pl-10">
+      <div className="flex flex-row max-w-[calc(100vw-2%)] ">
         {/* Best Result */}
         <div className="flex flex-col">
           <h1 className="text-2xl font-bold">Melhor resultado</h1>
@@ -97,6 +97,52 @@ const SearchQuery = () => {
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+      {/* Artists */}
+
+      <div
+        className="text-white pt-14 
+      "
+      >
+        <h1 className="text-2xl font-bold pb-5">Artists</h1>
+        <div className="flex justify-start gap-5 truncate">
+          {searchQuery?.artists?.items.map((song, i) => {
+            return <ArtistCard song={song} key={song.id} />;
+          })}
+        </div>
+      </div>
+      {/* Albums */}
+      <div className="w-full pt-14">
+        <h1 className="text-2xl font-bold pb-5">Albums</h1>
+      </div>
+      <div className="flex justify-start gap-5 truncate">
+        {searchQuery?.albums?.items?.map((song, i) => {
+          return <AlbumCard song={song} key={song.id} i={i} />;
+        })}
+      </div>
+      {/* Playlists */}
+      <div
+        className=" text-white pt-14 
+     "
+      >
+        <h1 className="text-2xl font-bold pb-5">Playlists</h1>
+        <div className="flex justify-start gap-5 truncate">
+          {searchQuery?.playlists?.items?.map((playlist, i) => {
+            return <PlaylistCard song={playlist} key={playlist.id} i={i} />;
+          })}
+        </div>
+      </div>
+      {/* Podcasts */}
+      <div
+        className="text-white w-full pt-14 pb-10 
+     "
+      >
+        <h1 className="text-2xl font-bold pb-5">Podcasts</h1>
+        <div className=" flex justify-start gap-5 truncate">
+          {searchQuery?.shows?.items?.map((podcast, i) => {
+            return <AlbumCard song={podcast} key={podcast} i={i} />;
+          })}
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const AlbumCard = ({ song }) => {
           "
       >
         <Link to={`/album/${song?.id}`}>
-          <div className="relative rounded-lg overflow-hidden">
+          <div className="relative h-[170px] rounded-lg overflow-hidden">
             <img
               src={song?.images?.[0]?.url}
               alt="songs"
