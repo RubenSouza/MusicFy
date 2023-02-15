@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { spotifyApiToken } from "./components/spotifyApiToken";
 
-import { Login, PageLoader, SearchQuery } from "./pages";
+import { Login, PageLoader, Podcast, SearchQuery } from "./pages";
 
 import { Sidebar, MusicPlayer, TopButtons } from "./components";
 
@@ -93,6 +93,7 @@ const App = () => {
                 <Route path="/featured" element={<Featured />} />
                 <Route path="/topTracks" element={<TopTracks />} />
                 <Route path="/topBrasil" element={<TopBrasil />} />
+                <Route path="/podcast/:id" element={<Podcast />} />
               </Routes>
             </div>
           </div>

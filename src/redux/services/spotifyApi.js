@@ -71,6 +71,9 @@ export const spotifyApi = createApi({
     getArtistAlbums: builder.query({
       query: ({ artistId }) => `/artists/${artistId}/albums`,
     }),
+    getPodcast: builder.query({
+      query: ({ podcastId }) => `/shows/${podcastId}`,
+    }),
     getSeveralCategories: builder.query({
       query: () => `/browse/categories?country=BR&limit=50`,
     }),
@@ -106,4 +109,5 @@ export const {
   useGetSeveralCategoriesQuery,
   useGetSearchQuery,
   useGetPlaylistsForCategoryQuery,
+  useGetPodcastQuery,
 } = spotifyApi;

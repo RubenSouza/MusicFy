@@ -19,6 +19,8 @@ import TopButtons from "./TopButtons";
 import MyAlbum from "./MyAlbum";
 import GenderCard from "./GenderCard";
 import SongBar4 from "./SongBar4";
+import PodcastCard from "./PodcastCard";
+import PodcastBar from "./PodcastBar";
 
 export {
   TopPlay,
@@ -42,4 +44,6 @@ export {
   MyAlbum,
   GenderCard,
   SongBar4,
+  PodcastCard,
+  PodcastBar,
 };

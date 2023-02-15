@@ -85,14 +85,14 @@ const Discover = () => {
         <div className="text-white p-3 text-3xl font-bold mb-4 ">
           <h1>Bom dia</h1>
         </div>
-        <div className="px-2 max-w-[calc(100vw-16%)]">
+        <div className="px-2 max-w-[calc(100vw-17%)]">
           <TopPlay data={topTracks} />
         </div>
       </div>
 
       {/* //This is the new Albums Section */}
       <div
-        className="pt-6 mt-6 px-6 max-w-[calc(100vw-16%)] 
+        className="pt-6 mt-6 px-6 max-w-[calc(100vw-17%)] 
       lg:min-h-[40%] md:min-h-[40%] min-h-[30%] "
       >
         <div className="text-white p-3  mb-4 flex justify-between">
@@ -112,7 +112,7 @@ const Discover = () => {
 
       {/* This is the Top Tracks Section */}
 
-      <div className="pt-6 px-6 max-w-[calc(100vw-16%)] min-h-[40%] ">
+      <div className="pt-6 px-6 max-w-[calc(100vw-17%)] min-h-[40%] ">
         <div className="text-white p-3  mb-4 flex justify-between">
           <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
             As faixas mais tocadas no mundo
@@ -139,7 +139,7 @@ const Discover = () => {
 
       {/* This is the  Featured Playlists */}
 
-      <div className="pt-6 px-6 max-w-[calc(100vw-16%)] min-h-[40%] ">
+      <div className="pt-6 px-6 max-w-[calc(100vw-17%)] min-h-[40%] ">
         <div className="text-white p-3  mb-4 flex justify-between">
           <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
             Playlists Mais Tocadas
@@ -157,7 +157,7 @@ const Discover = () => {
 
       {/* This is the Top Brasil Tracks */}
 
-      <div className="pt-6 px-6 max-w-[calc(100vw-16%)] min-h-[40%] ">
+      <div className="pt-6 px-6 max-w-[calc(100vw-17%)] min-h-[40%] ">
         <div className="text-white p-3  mb-4 flex justify-between">
           <h1 className="md:text-1xl lg:text-2xl text-base font-bold">
             As faixas mais tocadas no Brasil

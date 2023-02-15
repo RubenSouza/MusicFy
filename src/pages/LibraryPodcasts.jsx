@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AlbumCard } from "../components";
+import { PodcastCard } from "../components";
 import { useGetUserPodcastsQuery } from "../redux/services/spotifyApi";
 
 const LibraryPodcasts = () => {
@@ -10,12 +10,16 @@ const LibraryPodcasts = () => {
     error: userPodcastsError,
   } = useGetUserPodcastsQuery();
 
+  console.log(userPodcats);
+
   return (
     <div className="h-screen text-white w-full p-10 pt-20">
       <h1 className="text-2xl font-bold pb-10">Podcasts</h1>
       <div className=" flex justify-start gap-5 flex-wrap">
         {userPodcats?.items?.map((podcast, i) => {
-          return <AlbumCard song={podcast.show} key={podcast.show.id} i={i} />;
+          return (
+            <PodcastCard song={podcast.show} key={podcast.show.id} i={i} />
+          );
         })}
       </div>
     </div>
